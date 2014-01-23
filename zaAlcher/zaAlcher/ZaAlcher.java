@@ -19,12 +19,11 @@ import org.powerbot.script.methods.Skills;
 
 import zaAlcher.Task.Task;
 import zaAlcher.Task.Task_Alch;
-import zaAlcher.Task.Task_Antiban;
 
 
-@Manifest (authors={"zaScript"} , name = "zaAlcher" , description = "Basic high alchemy script")
+@Manifest (authors={"theasd"} , name = "zaAlcher" , description = "Basic high alchemy script")
 
-public class ZaAlcher extends PollingScript implements MessageListener, PaintListener{
+public class ZaAlcher extends PollingScript implements  PaintListener{
 
 	private ArrayList<Task> taskList = new ArrayList<Task>();
 	
@@ -49,7 +48,6 @@ public class ZaAlcher extends PollingScript implements MessageListener, PaintLis
 			}
 		});
 		taskList.add(new Task_Alch(ctx));
-		taskList.add(new Task_Antiban(ctx));
 		
 		startingExp = ctx.skills.getExperience(Skills.MAGIC);
 		startingLevel = ctx.skills.getLevel(Skills.MAGIC);
@@ -98,7 +96,7 @@ public class ZaAlcher extends PollingScript implements MessageListener, PaintLis
 		g.drawString("Run Time: "+getRunTimeString(runTime),10,20);
 		g.drawString("Experience: "+expGained,170,20);
 		g.drawString("Exp/Hour: "+expPerHour,10,40);
-		g.drawString("Level: "+currentLevel+"+"+levelsGained,170 ,40 );
+		g.drawString("Level: "+currentLevel+"("+levelsGained+")",170 ,40 );
 		
 		
 	}
@@ -111,12 +109,6 @@ public class ZaAlcher extends PollingScript implements MessageListener, PaintLis
         millis -= TimeUnit.MINUTES.toMillis(minutes);
         long seconds = TimeUnit.MILLISECONDS.toSeconds(millis);
         return hours+"h "+minutes+"m "+seconds+"s";
-	}
-	@Override
-	public void messaged(MessageEvent msg) 
-	{
-		
-		
 	}
 	
 
