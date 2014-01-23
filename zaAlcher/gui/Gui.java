@@ -18,7 +18,6 @@ import java.text.NumberFormat;
 public class Gui {
 
 	public JFrame frmZaalcher;
-	private ZaAlcher alcher;
 	/**
 	 * Launch the application.
 	 */
@@ -27,9 +26,8 @@ public class Gui {
 	/**
 	 * Create the application.
 	 */
-	public Gui(ZaAlcher alcher) {
+	public Gui() {
 		initialize();
-		this.alcher = alcher;
 	}
 
 	/**
@@ -82,9 +80,9 @@ public class Gui {
 			{
 				if(formattedTextField.getValue() ==null)
 					return;
-				alcher.ItemID = (int) formattedTextField.getValue();
-				alcher.started =true;
-				alcher.startingTime = System.currentTimeMillis();
+				ZaAlcher.ItemID = (int) formattedTextField.getValue();
+				ZaAlcher.started =true;
+				ZaAlcher.startingTime = System.currentTimeMillis();
 				frmZaalcher.setVisible(false);
 			}
 		});

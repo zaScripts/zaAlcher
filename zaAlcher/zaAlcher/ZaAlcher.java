@@ -28,12 +28,12 @@ public class ZaAlcher extends PollingScript implements MessageListener, PaintLis
 
 	private ArrayList<Task> taskList = new ArrayList<Task>();
 	
-	public int ItemID;
-	public boolean started = false;
+	public static  int ItemID;
+	public static boolean started = false;
 	
 	private int startingExp;
 	private int startingLevel;
-	public long startingTime;
+	public static long startingTime;
 
 	
 	
@@ -44,11 +44,11 @@ public class ZaAlcher extends PollingScript implements MessageListener, PaintLis
 		{
 			public void run() 
 			{
-					Gui window = new Gui(ZaAlcher.this);
+					Gui window = new Gui();
 					window.frmZaalcher.setVisible(true);
 			}
 		});
-		taskList.add(new Task_Alch(ctx,this));
+		taskList.add(new Task_Alch(ctx));
 		taskList.add(new Task_Antiban(ctx));
 		
 		startingExp = ctx.skills.getExperience(Skills.MAGIC);
@@ -82,12 +82,12 @@ public class ZaAlcher extends PollingScript implements MessageListener, PaintLis
 	{
 		if(!started)
 			return;
-		int expGained = ctx.skills.getExperience(Skills.MAGIC) - startingExp;
-		int currentLevel = ctx.skills.getLevel(Skills.MAGIC);
-		int levelsGained = currentLevel - startingLevel;
-		long currentTime = System.currentTimeMillis();
-		long runTime = currentTime-startingTime;
-		long expPerHour = (expGained * 3600000L)/runTime;
+		final int expGained = ctx.skills.getExperience(Skills.MAGIC) - startingExp;
+		final int currentLevel = ctx.skills.getLevel(Skills.MAGIC);
+		final int levelsGained = currentLevel - startingLevel;
+		final long currentTime = System.currentTimeMillis();
+		final long runTime = currentTime-startingTime;
+		final long expPerHour = (expGained * 3600000L)/runTime;
 
 
 		

@@ -7,7 +7,7 @@ import org.powerbot.script.util.Timer;
 @SuppressWarnings("deprecation")
 public class Task_Antiban extends Task 
 {
-
+	Timer delay;
 	public Task_Antiban(MethodContext ctx) 
 	{
 		super(ctx);

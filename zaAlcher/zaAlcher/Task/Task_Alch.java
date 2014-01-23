@@ -9,30 +9,27 @@ import zaAlcher.ZaAlcher;
 @SuppressWarnings("deprecation")
 public class Task_Alch extends Task 
 {
-	ZaAlcher alcher;
-	public Task_Alch(MethodContext ctx,ZaAlcher alcher) 
+	public Task_Alch(MethodContext ctx) 
 	{
 		super(ctx);
-		this.alcher = alcher;
-		delay = new Timer(Random.nextInt(3000,3500));
+
+
 	}
 
 
 	@Override
 	public boolean activate() 
 	{
-		if(delay.isRunning())
-			return false;
-		
-		delay.reset();
-		return true;
+		if(ctx.players.local().getAnimation()==-1)
+			return true;
+		return false;
 	}
 
 	@Override
 	public void execute()
 	{
 		ctx.keyboard.send("5");
-		final Item item = ctx.backpack.select().id(alcher.ItemID).poll();
+		final Item item = ctx.backpack.select().id(ZaAlcher.ItemID).poll();
 		item.click();
 	}
 
